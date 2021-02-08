@@ -1,45 +1,18 @@
-// Create a "close" button and append it to each list item
-var myNodelist = document.getElementsByTagName("LI");
-var i;
-for (i = 0; i < myNodelist.length; i++) {
-  var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(txt);
-  myNodelist[i].appendChild(span);
-}
-// Click on a close button to hide the current list item
-var close = document.getElementsByClassName("close");
-var i;
-for (i = 0; i < close.length; i++) {
-  close[i].onclick = function() {
-    var div = this.parentElement;
-    div.style.display = "none";
-  }
-}
-// Create a new list item when clicking on the "Add" button
-function newElement() {
-  var li = document.createElement("li");
-  var inputValue = document.getElementById("myInput").value;
-  var t = document.createTextNode(inputValue);
-  li.appendChild(t);
-  if (inputValue === '') {
-    alert("You must write something!");
-  } else {
-    document.getElementById("myUL").appendChild(li);
-  }
-  document.getElementById("myInput").value = "";
-
-  var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(txt);
-  li.appendChild(span);
-
-  for (i = 0; i < close.length; i++) {
-    close[i].onclick = function() {
-      var div = this.parentElement;
-      div.style.display = "none";
-    }
-  }
-}
+//*calls html Tags upfront to Javascript A variable is the name of the storage for a value assigned to identify its location. In JavaScript a variable can be declared using let or var. ‘var’ declaration scope is global irrespective of its declared scope or location whereas the variable declared using let statement is block scoped or enclosed scope.
+let addToDoButton = document.getElementById('addToDo');
+let toDoContainer = document.getElementById('toDoContainer');
+let inputField = document.getElementById('inputField');
+//*
+addToDoButton.addEventListener('click', function(){
+    var paragraph = document.createElement('p');
+    paragraph.classList.add('paragraph-styling');
+    paragraph.innerText = inputField.value;
+    toDoContainer.appendChild(paragraph);
+    inputField.value = "";
+    paragraph.addEventListener('click', function(){
+        paragraph.style.textDecoration = "line-through";
+    })
+    paragraph.addEventListener('dblclick', function(){
+        toDoContainer.removeChild(paragraph);
+    })
+})
